@@ -80,7 +80,7 @@ occurred and the test results. Note that failed tests are not considered errors;
 they will be reported in the results. The results are the same as for
 [wd-tap-runner](https://github.com/conradz/wd-tap-runner).
 
-### `close([callback])`
+### `#close([callback])`
 
 Closes the Sauce Connect tunnel. Will call `callback` when everything is closed.
 All tests must be finished before closing.
