@@ -1,0 +1,37 @@
+{
+  "name": "sauce-tap-runner",
+  "version": "0.0.0",
+  "description": "Automate running TAP browser unit tests on Sauce Labs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/conradz/sauce-tap-runner.git"
+  },
+  "keywords": [
+    "webdriver",
+    "wd",
+    "test",
+    "tests",
+    "saucelabs",
+    "sauce",
+    "tap"
+  ],
+  "author": "Conrad Zimmerman <me@conradz.com>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/conradz/sauce-tap-runner/issues"
+  },
+  "dependencies": {
+    "p-promise": "~0.2.5",
+    "wd-tap-runner": "0.0.1",
+    "sauce-tunnel": "~1.0.1",
+    "lodash": "~1.3.1",
+    "wd": "0.0.34"
+  },
+  "devDependencies": {
+    "async": "~0.2.9"
+  }
+}
