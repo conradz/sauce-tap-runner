@@ -1,5 +1,7 @@
 # sauce-tap-runner
 
+[![Build Status](https://travis-ci.org/conradz/sauce-tap-runner.png?branch=master)](https://travis-ci.org/conradz/sauce-tap-runner)
+
 Run TAP unit tests in the browser using
 [Sauce Labs](https://saucelabs.com/home) hosted browsers. This helper takes care
 of setting up the tunnel to Sauce Labs servers and provides the test page and
