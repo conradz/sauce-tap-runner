@@ -26,9 +26,9 @@
   },
   "dependencies": {
     "wd-tap-runner": "0.0.2",
-    "sauce-tunnel": "~1.0.1",
     "lodash": "~1.3.1",
-    "wd": "0.0.34"
+    "wd": "0.0.34",
+    "sauce-connect-launcher": "~0.1.11"
   },
   "devDependencies": {
     "async": "~0.2.9"

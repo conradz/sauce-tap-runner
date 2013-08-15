@@ -91,9 +91,10 @@ All tests must be finished before closing.
 
 `Runner` inherits from `EventEmitter`. It will emit the following events:
 
- * `tunnel-connect(tunnel)`: Starting to connect the Sauce Connect tunnel
+ * `tunnel-connect`: Starting to connect the Sauce Connect tunnel
  * `tunnel(tunnel)`: The Sauce Connect tunnel has been connected
- * `tunnel-error`: An error occurred when connecting the Sauce Connect tunnel
+ * `tunnel-error(err)`: An error occurred when connecting the Sauce Connect
+   tunnel
  * `browser(browser)`: Successfully connected to a new browser
  * `results(results)`: A test run has finished
  * `close`: The runner has been closed

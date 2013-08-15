@@ -3,7 +3,7 @@ var wdRunner = require('wd-tap-runner'),
     util = require('util'),
     EventEmitter = require('events').EventEmitter,
     wd = require('wd'),
-    SauceTunnel = require('sauce-tunnel');
+    sauceConnect = require('sauce-connect-launcher');
 
 var SAUCE_URL = 'ondemand.saucelabs.com',
     SAUCE_PORT = 80;
@@ -15,31 +15,35 @@ function Runner(user, key) {
     this.key = key;
     this._running = false;
     this._tunnel = null;
+    this._tunnelId = 'tap-test-' + Math.floor(_.random(0, 1000000));
 }
 
 util.inherits(Runner, EventEmitter);
 
 Runner.prototype._getTunnel = function(callback) {
     if (this._tunnel) {
-        callback(null, this._tunnel);
-        return;
+        return callback(null, this._tunnel);
     }
 
-    var id = 'tap-test-' + Math.floor(_.random(0, 1000000)),
-        tunnel = new SauceTunnel(this.user, this.key, id, true, 120),
-        self = this;
+    var self = this,
+        options = {
+            username: this.user,
+            accessKey: this.key,
+            tunnelIdentifier: this._tunnelId
+        };
 
-    this.emit('tunnel-connect', tunnel);
-    tunnel.start(function(connected) {
-        if (!connected) {
-            self.emit('tunnel-error');
-            callback(new Error('Could not connect tunnel'));
-            return;
+    this.emit('tunnel-connect');
+    sauceConnect(options, function(err, tunnel) {
+        if (err) {
+            self.emit('tunnel-error', err);
+            return callback(err);
         }
 
         self._tunnel = tunnel;
         self.emit('tunnel', tunnel);
-        callback(null, tunnel);
+        setTimeout(function() {
+            callback(null, tunnel);
+        }, 5000);
     });
 };
 
@@ -69,7 +73,7 @@ Runner.prototype.run = function(src, capabilities, options, callback) {
 
     function createBrowser(tunnel) {
         capabilities = _.assign({}, capabilities);
-        capabilities['tunnel-identifier'] = tunnel.identifier;
+        capabilities['tunnel-identifier'] = self._tunnelId;
 
         var browser = wd.remote(
             SAUCE_URL, SAUCE_PORT,
@@ -114,7 +118,7 @@ Runner.prototype.close = function(callback) {
     }
 
     if (this._tunnel) {
-        this._tunnel.stop(function() {
+        this._tunnel.close(function() {
             done();
         });
     } else {
