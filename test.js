@@ -17,7 +17,8 @@ var testSrc = [
 ].join('\r\n');
 
 var user = process.env.SAUCE_USER,
-    key = process.env.SAUCE_KEY;
+    key = process.env.SAUCE_KEY,
+    build = process.env.DRONE_BUILD_NUMBER;
 if (!user || !key) {
     console.log('Set SAUCE_USER and SAUCE_KEY to your SauceLabs credentials');
     process.exit(1);
@@ -52,7 +53,13 @@ function run() {
 function test(browser) {
     return function(callback) {
         console.log('Testing', browser);
-        runner.run(testSrc, { browserName: browser, name: 'Test ' + browser },
+
+        var capabilities = {
+            browserName: browser,
+            name: 'Test ' + browser,
+            build: build
+        };
+        runner.run(testSrc, capabilities,
             function(err, results) {
                 if (err) {
                     return callback(err);
