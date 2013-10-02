@@ -3,7 +3,8 @@ var wdRunner = require('wd-tap-runner'),
     util = require('util'),
     EventEmitter = require('events').EventEmitter,
     wd = require('wd'),
-    sauceConnect = require('sauce-connect-launcher');
+    sauceConnect = require('sauce-connect-launcher'),
+    sauceResults = require('sauce-results');;
 
 var SAUCE_URL = 'ondemand.saucelabs.com',
     SAUCE_PORT = 80;
@@ -60,7 +61,8 @@ Runner.prototype.run = function(src, capabilities, options, callback) {
         options = {};
     }
 
-    var self = this;
+    var self = this,
+        results;
     this._running = true;
 
     this._getTunnel(function(err, tunnel) {
@@ -97,16 +99,32 @@ Runner.prototype.run = function(src, capabilities, options, callback) {
 
             browser.quit(function() {
                 // Ignore error when closing browser
-                done(err, results);
+                ran(err, results);
             });
         });
     }
 
-    function done(err, result) {
-        self._running = false;
-        if (callback) {
-            callback(err, result);
+    function ran(err, r) {
+        if (err) {
+            return callback(err);
         }
+
+        results = r;
+
+        sauceResults({
+            user: self.user,
+            key: self.key,
+            passed: results.ok
+        }, done);
+    }
+
+    function done(err) {
+        if (err) {
+            return callback(err);
+        }
+
+        self._running = false;
+        callback(null, results);
     }
 };
 

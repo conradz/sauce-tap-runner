@@ -8,7 +8,10 @@
 Run TAP unit tests in the browser using
 [Sauce Labs](https://saucelabs.com/home) hosted browsers. This helper takes care
 of setting up the tunnel to Sauce Labs servers and provides the test page and
-TAP parsing.
+TAP parsing. It will also set the test result status on Sauce Labs so that you
+can use the awesome [status images](https://saucelabs.com/docs/status-images).
+(Note that you must also set the `build` field on the desired capabilities
+object for the images to work.)
 
 ## Example
 
