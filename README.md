@@ -1,6 +1,8 @@
 # sauce-tap-runner
 
-[![Build Status](https://travis-ci.org/conradz/sauce-tap-runner.png?branch=master)](https://travis-ci.org/conradz/sauce-tap-runner)
+[![NPM](https://nodei.co/npm/sauce-tap-runner.png?compact=true)](https://nodei.co/npm/sauce-tap-runner/)
+
+[![Build Status](https://drone.io/github.com/conradz/sauce-tap-runner/status.png)](https://drone.io/github.com/conradz/sauce-tap-runner/latest)
 [![Dependency Status](https://gemnasium.com/conradz/sauce-tap-runner.png)](https://gemnasium.com/conradz/sauce-tap-runner)
 
 Run TAP unit tests in the browser using
