@@ -5,6 +5,8 @@
 [![Build Status](https://drone.io/github.com/conradz/sauce-tap-runner/status.png)](https://drone.io/github.com/conradz/sauce-tap-runner/latest)
 [![Dependency Status](https://gemnasium.com/conradz/sauce-tap-runner.png)](https://gemnasium.com/conradz/sauce-tap-runner)
 
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/sauce-tap-runner.svg)](https://saucelabs.com/u/sauce-tap-runner.svg)
+
 Run TAP unit tests in the browser using
 [Sauce Labs](https://saucelabs.com/home) hosted browsers. This helper takes care
 of setting up the tunnel to Sauce Labs servers and provides the test page and
