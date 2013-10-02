@@ -1,6 +1,6 @@
 {
   "name": "sauce-tap-runner",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Automate running TAP browser unit tests on Sauce Labs",
   "main": "index.js",
   "scripts": {
