@@ -25,9 +25,9 @@
     "url": "https://github.com/conradz/sauce-tap-runner/issues"
   },
   "dependencies": {
-    "wd-tap-runner": "0.0.8",
-    "lodash": "~2.2.0",
-    "wd": "~0.1.0",
+    "wd-tap-runner": "~0.1.0",
+    "lodash": "~2.3.0",
+    "wd": "~0.2.3",
     "sauce-connect-launcher": "~0.2.1",
     "sauce-results": "0.0.1"
   },
