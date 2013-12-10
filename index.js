@@ -1,5 +1,4 @@
 var wdRunner = require('wd-tap-runner'),
-    _ = require('lodash'),
     util = require('util'),
     EventEmitter = require('events').EventEmitter,
     wd = require('wd'),
@@ -16,7 +15,10 @@ function Runner(user, key) {
     this.key = key;
     this._running = false;
     this._tunnel = null;
-    this._tunnelId = 'tap-test-' + Math.floor(_.random(0, 1000000));
+
+    this._tunnelId = ('tap-test-'
+        + Date.now() + '-'
+        + Math.floor(Math.random() * 100));
 }
 
 util.inherits(Runner, EventEmitter);
@@ -74,14 +76,17 @@ Runner.prototype.run = function(src, capabilities, options, callback) {
     });
 
     function createBrowser(tunnel) {
-        capabilities = _.assign({}, capabilities);
-        capabilities['tunnel-identifier'] = self._tunnelId;
+        var options = {};
+        for (var k in capabilities) {
+            options[k] = capabilities[k];
+        }
+        options['tunnel-identifier'] = self._tunnelId;
 
         var browser = wd.remote(
             SAUCE_URL, SAUCE_PORT,
             self.user, self.key);
 
-        browser.init(capabilities, function(err) {
+        browser.init(options, function(err) {
             if (err) {
                 return done(err);
             }
