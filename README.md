@@ -3,7 +3,7 @@
 [![NPM](https://nodei.co/npm/sauce-tap-runner.png?compact=true)](https://nodei.co/npm/sauce-tap-runner/)
 
 [![Build Status](https://drone.io/github.com/conradz/sauce-tap-runner/status.png)](https://drone.io/github.com/conradz/sauce-tap-runner/latest)
-[![Dependency Status](https://gemnasium.com/conradz/sauce-tap-runner.png)](https://gemnasium.com/conradz/sauce-tap-runner)
+[![Dependency Status](https://david-dm.org/conradz/sauce-tap-runner.png)](https://david-dm.org/conradz/sauce-tap-runner)
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/sauce-tap-runner.svg)](https://saucelabs.com/u/sauce-tap-runner.svg)
 
