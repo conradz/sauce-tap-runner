@@ -111,6 +111,7 @@ Runner.prototype.run = function(src, capabilities, options, callback) {
 
     function ran(err, r) {
         if (err) {
+            self._running = false;
             return callback(err);
         }
 
