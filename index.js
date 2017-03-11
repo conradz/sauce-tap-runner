@@ -51,16 +51,17 @@ Runner.prototype._getTunnel = function(callback) {
 };
 
 Runner.prototype.run = function(src, capabilities, options, callback) {
-    if (this._running) {
-        callback(new Error('Another test is currently running'));
-        return;
-    }
 
     options = options || {};
     callback = callback || (function() {});
     if (typeof options === 'function') {
         callback = options;
         options = {};
+    }
+
+    if (this._running) {
+        callback(new Error('Another test is currently running'));
+        return;
     }
 
     var self = this,
